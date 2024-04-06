@@ -82,12 +82,56 @@ sequenceDiagram
 
 ## 0.5: Single page app
 Create a diagram depicting the situation where the user goes to the single page app version of the notes app at https://studies.cs.helsinki.fi/exampleapp/spa.
+```mermaid
+sequenceDiagram
+    participant browser
+    participant server
 
+    browser->>server: GET [https://studies.cs.helsinki.fi/exampleapp/spa](https://studies.cs.helsinki.fi/exampleapp/spa)
+    activate server
+    server-->>browser: Html code
+    deactivate server
+
+    browser->>server: GET [[https://studies.cs.helsinki.fi/exampleapp/main.css](https://studies.cs.helsinki.fi/exampleapp/main.css)]
+    activate server
+    server-->>browser: main.css
+    deactivate server
+
+    browser->>server: GET [https://studies.cs.helsinki.fi/exampleapp/main.js](https://studies.cs.helsinki.fi/exampleapp/spa.js)
+    activate server
+    server-->>browser: spa.js
+    deactivate server
+
+    Note right of browser: The browser starts executing the JavaScript code <br/> that requests JSON from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    deactivate server
+
+    Note right of browser: The browser executes the event handler<br/> that renders the notes to display
+    
+```
 
 
 ## 0.6: New note SPA
 Create a diagram depicting the situation where the user creates a new note using the single page version of the app.
+```mermaid
+sequenceDiagram
+    participant browser
+    participant server
 
+     Note left of browser: The browser executes send JSON data to server
+
+browser->>server: POST [[https://studies.cs.helsinki.fi/exampleapp/notes](https://studies.cs.helsinki.fi/exampleapp/new_note_spa)]
+    activate server
+    Note right of server: server creates the new note and returns 201 code a json object
+    server-->>browser: {"message":"new note"}
+    deactivate server
+  
+    Note left of browser: Instead of reloading the page, only <br/>the new note is rendered by the browser(js)
+    
+```
 
 
 This was the last exercise, and it's time to push your answers to GitHub and mark the exercises as done in the submission application.
