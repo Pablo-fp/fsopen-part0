@@ -1,4 +1,4 @@
-# fsopen-part0
+# fsopen-part0: Fundamentals of Web apps
 Helsinki University [Full Stack Open Course](https://fullstackopen.com/) Part0
 # Exercises
 ## 0.4: New note
